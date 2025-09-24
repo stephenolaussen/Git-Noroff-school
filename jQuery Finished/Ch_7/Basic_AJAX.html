@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Using the ajax Function</title>
+        <style>
+            #ajaxContent {
+                padding: 5pt;
+                border: 2px dashed lightgray;
+            }
+        </style>
+        <link rel="stylesheet" href="../style.css" />
+        <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+        <script type="text/javascript">
+            $("document").ready(function () {
+                $("#btnGetText").on("click", { url: "testdata.txt" }, getData);
+                $("#btnGetHTML").on("click", { url: "testdata.html" }, getData);
+            });
+
+            function getData(evt) {
+                $.ajax(evt.data.url)
+                    .done(function (data, status, result) {
+                        $("#ajaxContent").append(data);
+                        console.log("Success!");
+                    })
+                    .fail(function (xhr, status, strErr) {
+                        console.log("There was an error: " + strErr);
+                    })
+                    .always(function (xhr, status, strErr) {
+                        console.log("Request complete!");
+                    });
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Using the basic Ajax function</h1>
+        <div id="content">
+            <p>
+                The <code>$.ajax()</code> function is used to perform basic AJAX
+                requests. It can be customized using a variety of parameters.
+            </p>
+            <p>If successful, the returned data will appear here:</p>
+            <p id="ajaxContent"></p>
+        </div>
+        <button id="btnGetText">Get Text Data</button>
+        <button id="btnGetHTML">Get HTML Data</button>
+    </body>
+</html>

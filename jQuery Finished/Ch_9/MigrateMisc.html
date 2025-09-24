@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Migrating Miscellaneous Features</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function() {
+            $("#addCl").on("click", function(evt) {
+                // Add a class to a set of elements
+                // $("#para1").addClass("pClass");
+
+                let elem = document.querySelector("#para1");
+                elem.classList.add("pClass");
+            });
+
+            $("#rmCl").on("click", function(evt) {
+                // Remove a class from a set of elements
+                // $("#example p").removeClass("pClass");
+
+                let elems = document.querySelectorAll("#example p");
+                elems.forEach(elem => {
+                    elem.classList.remove("pClass");
+                });
+            });
+
+            $("#toggleCl").on("click", function(evt) {
+                // Toggle a class on a set of elements
+                // $("#example p").toggleClass("pClass");
+
+                let elems = document.querySelectorAll("#example p");
+                elems.forEach(elem => {
+                    elem.classList.toggle("pClass");
+                });
+            });
+
+            $("#changeText").on("click", () => {
+                // $("#example p:last").text("I've changed the last paragraph");
+
+                document.querySelector("#example p:last-of-type").textContent = "I've changed the last paragraph";
+            });
+
+            $("#newPara").on("click", () => {
+                // $("#example").append("<p>New Paragraph</p>");
+
+                let newP = document.createElement("p");
+                newP.appendChild(document.createTextNode("New Paragraph"));
+                document.querySelector("#example").appendChild(newP);
+            });
+
+        });
+    </script>
+    <style>
+        .pClass {
+            color: green;
+            text-transform: uppercase
+        }
+        
+        button {
+            margin: 5pt 5pt 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Miscellaneous Migration Features</h1>
+    <div id="content">
+        <p>jQuery's CSS handling features have modern browser quivalents. Elements support a <code>classList</code> property to manipulate CSS classes.</p>
+        <p><code>addClass()</code> equivalent is <code>classList.add()</code></p>
+        <p><code>removeClass()</code> equivalent is <code>classList.remove()</code></p>
+        <p><code>toggleClass()</code> equivalent is <code>classList.toggle()</code></p>
+        <p>Updating the DOM also has standard methods.</p>
+        <p>jQuery's <code>text()</code> method equivalent is the <code>textContent</code> property</p>
+        <p>Standard DOM functions are used instead of <code>$("&lt;elem&gt;")</code> to create new content</p>
+        <div id="example">
+            <p class="a">This is paragraph 1</p>
+            <p id="para1">This is paragraph 2</p>
+            <p class="b">This is paragraph 3</p>
+            <p id="para4" lang="en-us">This is paragraph 4</p>
+            <p id="para5" lang="en-gb">This is paragraph 5</p>
+        </div>
+
+        <div>
+            <button id="addCl">Add Class</button>
+            <button id="rmCl">Remove Class</button>
+            <button id="toggleCl">Toggle Class</button>
+        </div>
+        <div>
+            <button id="changeText">Change Text</button>
+            <button id="newPara">New Paragraph</button>
+        </div>
+    </div>
+</body>
+
+</html>

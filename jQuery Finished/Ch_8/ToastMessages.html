@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Pop-up "Toast" Messages</title>
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="Toasts/styles.css">
+        <style>
+            .custom-toast {
+                border-radius: 15px;
+                background-color: whitesmoke;
+            }
+            .custom-toast .content-container .title {
+                font-size: 12pt;
+            }
+            .custom-toast .content-container .message {
+                font-size: 10pt;
+            }
+        </style>
+
+        <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="Toasts/toast-plugin.js"></script>
+
+        <script type="text/javascript">
+            // Inserting content using jQuery
+            $("document").ready(function () {
+                $("#btnSuccess").on("click", () => {
+                    $.toast({
+                        title: "Success!",
+                        message: "Your action was completed successfully.",
+                        type: "success",
+                        duration: 5000
+                    });
+                })
+                $("#btnWarning").on("click", () => {
+                    $.toast({
+                        title: "Warning",
+                        message: "You might want to be careful.",
+                        type: "warning",
+                        duration: 5000
+                    });
+                })
+                $("#btnError").on("click", () => {
+                    $.toast({
+                        title: "Error",
+                        message: "There was a problem.",
+                        type: "error",
+                        duration: 5000
+                    });
+                })
+                $("#btnInfo").on("click", () => {
+                    $.toast({
+                        title: "Information",
+                        message: "Everything seems fine.",
+                        type: "info",
+                        duration: 5000
+                    });
+                })
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1>Toast Messages Plugin</h1>
+        <div id="content">
+            <p>The jQuery Toast plugin makes it simple to display temporary popup messages with different icons</p>
+            <p>within your application. It's also easy to change their appearance through custom styles.</p>
+            <button id="btnSuccess">Success Toast</button>
+            <button id="btnWarning">Warning Toast</button>
+            <button id="btnError">Error Toast</button>
+            <button id="btnInfo">Info Toast</button>
+        </div>
+    </body>
+</html>

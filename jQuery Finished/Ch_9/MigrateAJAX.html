@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Migrating from jQuery AJAX</title>
+        <style>
+            #ajaxContent {
+                padding: 5pt;
+                border: 2px dashed lightgray;
+            }
+        </style>
+        <link rel="stylesheet" href="../style.css" />
+        <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+        <script type="text/javascript">
+            $("document").ready(function () {
+                $("#btnGetTextJQ").on("click", { url: "testdata.txt" }, getData_jQ);
+                $("#btnGetHTMLJQ").on("click", { url: "testdata.html" }, getData_jQ);
+                $("#btnGetTextStd").on("click", { url: "testdata.txt" }, getData_fetch);
+                $("#btnGetHTMLStd").on("click", { url: "testdata.html" }, getData_fetch);
+            });
+
+            // Original function using jQuery AJAX
+            function getData_jQ(evt) {
+                $.ajax(evt.data.url)
+                    .done(function (data, status, result) {
+                        $("#ajaxContent").append(data);
+                        console.log("Success!");
+                    })
+                    .fail(function (xhr, status, strErr) {
+                        console.log("There was an error: " + strErr);
+                    })
+                    .always(function (xhr, status, strErr) {
+                        console.log("Request complete!");
+                    });
+            }
+
+            // Standard browser API version
+            async function getData_fetch(evt) {
+                let response = await fetch(evt.data.url);
+                try {
+                    let data = await response.text();
+                    const headers = response.headers;
+                    const type = headers.get("Content-Type");
+                    if (type.indexOf("text/html") != -1) {
+                        document.querySelector("#ajaxContent").innerHTML = data;
+                    }
+                    else {
+                        document.querySelector("#ajaxContent").append(data);
+                    }
+                    console.log("Success!");
+                }
+                catch (error) {
+                    console.log("There was an error: " + error);
+                }
+                finally {
+                    console.log("Request complete!");
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Migrating from jQuery AJAX</h1>
+        <div id="content">
+            <p>
+                The <code>$.ajax()</code> function is used to perform basic AJAX
+                requests. It can be customized using a variety of parameters.
+            </p>
+            <p>Modern browsers provide the <code>fetch()</code> API which provides the same capability.</p>
+            <p id="ajaxContent"></p>
+        </div>
+        <button id="btnGetTextJQ">Get Text jQuery</button>
+        <button id="btnGetHTMLJQ">Get HTML jQuery</button>
+        <button id="btnGetTextStd">Get Text Fetch</button>
+        <button id="btnGetHTMLStd">Get HTML Fetch</button>
+    </body>
+</html>

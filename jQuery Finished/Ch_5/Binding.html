@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Binding and Unbinding Events with jQuery</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            // Use mouseover and mouseleave to toggle the background color
+            $("#evtTarget").on("mouseover mouseleave", highlight);
+
+            // Use "off" to stop listening to an event
+            $("#evtTarget").on("click", function(evt) {
+                $("#evtTarget").off("mouseover mouseleave", highlight);
+                $("#evtTarget").html("<p>You shut off the hover effect!</p>");
+                $("#evtTarget").removeClass("highlighted");
+            });
+
+            // use the "one" function to attach a one-time handler to an element
+            $("#btnOneTime").one("click", function (evt) {
+                $(this).prop("disabled", true);
+                $(this).text("Clicked!");
+            })
+            
+            // Listen for keypress events
+            $("#textEntry").on("keypress", function(evt) {
+                $("#keyPress").text(String.fromCharCode(evt.charCode) + ", code: " + evt.charCode);
+            });
+        });
+
+        function highlight(evt) {
+            $("#evtTarget").toggleClass("highlighted");        
+        }
+    </script>
+    <style type='text/css'>
+        .highlighted {
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Binding and Unbinding Events Example</h1>
+    <div id="content">
+
+        <p>jQuery makes it simple to start and stop listening to events using the <code>on()</code> and <code>off()</code> functions.
+            You just need to supply the name of the event you want to listen to and a function to handle it</p>
+        <div id="evtTarget" class="box"><p>Move the mouse over this div to see the effect.</p><p>Click on it to unbind the mouseover.</p></div>
+        <p>Type in this text field</p>
+        <input id="textEntry" type="text" />
+        <p>Last character typed: <span id="keyPress"></span></p>
+        <button id="btnOneTime">One-Time Button</button>
+    </div>
+</body>
+
+</html>

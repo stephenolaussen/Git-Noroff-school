@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Plugin - Form Validation</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+    <script src="jQueryValidation/jquery.validate.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#theform").validate();
+        });
+    </script>
+    <style type="text/css">
+        p,
+        span {
+            font-size: 16pt;
+        }
+        
+        button {
+            margin: 5pt 5pt 0 0;
+        }
+
+        #theform {
+            width: fit-content;
+            background-color:rgb(190, 228, 242);
+        }
+        #theform div {
+            padding: 5pt;
+        }
+        #theform label {
+            display: inline-block;
+            vertical-align: top;
+            width: 300px;
+        }
+        #theform input:not([type=submit]), textarea {
+            width:250px;
+        }
+        #theform label.error {
+            display: block;
+            color: red;
+            margin-left: 8pt;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>jQuery Form Validation</h1>
+    <div id="content">
+        <p>The jQuery Validator plugin makes form validation very easy. It's been around for many years</p>
+        <p>and provides a variety of form validation methods and ways of indicating errors.</p>
+
+        <form id="theform" method="get" action="" novalidate="novalidate">
+            <fieldset>
+                <legend>Please provide your personal information:</legend>
+                <div>
+                    <label for="username">Name (required, at least 2 characters)</label>
+                    <input id="username" name="name" minlength="2" type="text" required="">    
+                </div>
+                <div>
+                    <label for="userage">Age (required)</label>
+                    <input id="userage" name="age" min="1" type="number" required="">    
+                </div>
+                <div>
+                    <label for="useremail">E-Mail (required)</label>
+                    <input id="useremail" type="email" name="email" required="">
+                </div>
+                <div>
+                    <label for="homepage">Homepage (optional)</label>
+                    <input id="homepage" type="url" name="Homepage">
+                </div>
+                <div>
+                    <label for="usercomment">Reason for joining (required)</label>
+                    <textarea id="usercomment" name="comment" required=""></textarea>
+                </div>
+                <div>
+                    <input class="submit" type="submit" value="Submit">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

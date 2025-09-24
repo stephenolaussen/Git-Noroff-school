@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>The Ajax Convenience Functions</title>
+    <style>
+        #ajaxContent {
+            padding: 5pt;
+            border: 2px dashed lightgray;
+        }
+    </style>
+    <link rel="stylesheet" href="../style.css" />
+
+    <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function() {
+            $("#btnGet").on("click", getData);
+            $("#btnLoad").on("click", loadData);
+        });
+        
+        function getData() {
+            // use the get() shorthand method to request a resource
+            $.get("testdata.txt", successFn);
+        }
+
+        function loadData() {
+            // the load() shorthand method performs the common task of retrieving HTML content
+            // and inserts the returned content into the specified element. 
+            $("#ajaxContent").load("testdata.html");
+
+            // you can also specify a portion of the content to load
+            //$("ajaxContent").load("testdata.html #p2");
+        }
+
+        function successFn(result) {
+            console.log("Setting result");
+            $("#ajaxContent").append(result);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>The Ajax Convenience Functions</h1>
+    <div id="content">
+
+        <p>Certain scenarios, such as retrieving data via AJAX and then inserting the returned content into
+            an element on the page, are pretty common in Web development.</p>
+        <p>jQuery provides a set of convenience functions that make these scenarios easier.</p>
+        <ul>
+            <li><code>get()</code> and <code>post()</code>: shorthand methods for GET and POST requests</li>
+            <li><code>load()</code> will retrieve data and add it to a specific element or set of elements</li>
+        </ul>
+        <p>Content will be inserted into this div:</p>
+        <p id="ajaxContent"></p>
+        <button id="btnGet">Use get()</button>
+        <button id="btnLoad">Use load()</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Using AJAX Global Events</title>
+    <style>
+        #ajaxContent {
+            padding: 5pt;
+            border: 2px dashed lightgray;
+        }
+    </style>
+    <link rel="stylesheet" href="../style.css" />
+
+    <script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function() {
+            // Register the global event handlers for AJAX events
+            
+            // ajaxStart fires when the first request is about to be sent
+            $(document).on("ajaxStart", function () {
+                console.log("AJAX starting");
+            });
+
+            // ajaxStop fires when all requests have completed
+            $(document).on("ajaxStop", function () {
+                console.log("AJAX request ended");
+            });
+
+            // ajaxSend fires before a request is sent
+            $(document).on("ajaxSend", function (evt, jqXHR, options) {
+                console.log("About to Send request for data...");
+            });
+
+            // ajaxComplete fires when a request completes
+            $(document).on("ajaxComplete", function (evt, jqXHR, options) {
+                console.log("Everything's finished!");
+            });
+
+            // ajaxError fires when an ajax request results in an error
+            $(document).on("ajaxError", function (evt, jqXHR, settings, err) {
+                console.log("Hmmm. Seems like there was a problem: " + err);
+            });
+
+            // ajaxSuccess fires when an ajax request completes successfully
+            $(document).on("ajaxSuccess", function (evt, jqXHR, options, extraData) {
+                console.log("Looks like everything worked!");
+            });
+
+            $("#btnGetData").on("click", getData)
+        });
+      
+        function getData() {
+            $.get("testdata.txt", successFn);
+        }
+        
+        function successFn(result) {
+            console.log("Setting result");
+            $("#ajaxContent").append(result);
+        }
+        function errorFn(xhr, status, strErr) {
+            alert(strErr);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Using AJAX Global Events</h1>
+    <p>
+        jQuery's Global Ajax handlers make it easy to monitor and manipulate AJAX operations
+        from a centralized point in your code. These global handlers can be turned on or off as needed
+        and can be temporarily disabled for individual AJAX calls.
+    </p>
+    <div id="content">
+        <p id="ajaxContent"></p>
+    </div>
+    <button id="btnGetData">Get Data</button>
+</body>
+
+</html>
