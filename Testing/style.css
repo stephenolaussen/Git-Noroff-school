@@ -1,11 +1,27 @@
 h1 {
-    color: white;
-    background-color: blue;
+    color: lightgrey;
+    background-color: rgb(104, 65, 85);
     font-size: 30px;
-
+}
+h2 {
+    color: black;
+    font-size: 25px;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
 }
 p {
     color: green;
     font-size: 20px;
     font-family: Arial, sans-serif;
+}
+
+#theDiv :hover {
+    color: red;
+}
+#theDiv {
+    background-color: lightgrey;
+    padding: 50px;
+    margin: auto;
+    border: 1px solid #ccc;
+    width: fit-content;
 }
