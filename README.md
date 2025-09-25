@@ -88,6 +88,7 @@ Explore the `jQuery Finished/` folder for:
 - ✅ **Testing Project**: Completed with interactive features
 - ✅ **jQuery Modules**: All chapters completed
 - 🔄 **Ongoing**: Regular updates and improvements
+- 🔄 **Ongoing**: Now learing how to GitHub, just smal changes to test folder.
 
 ## 🤝 Contributing
 
