@@ -1,6 +1,6 @@
-# Git Noroff School
+# Git Noroff School (Learning GitHub days!)
 
-Welcome to my **Git Noroff School** repository! This repository contains various projects and exercises completed during my studies at Noroff School of Technology and Digital Media.
+Welcome to my **Git Noroff School** repository! This repository contains some projects and exercises completed during my studies at Noroff School of Technology and Digital Media.
 
 ## 📚 Repository Overview
 
@@ -10,11 +10,13 @@ This repository serves as a collection of web development projects, exercises, a
 
 ### 📁 Testing/
 A simple web application demonstrating basic HTML, CSS, and JavaScript functionality.
+Using this easy application to submit changes in branches to learn to use GitHub.
 
 **Features:**
-- Interactive color-changing functionality
-- Responsive design elements
 - Git workflow practice
+- Interactive color-changing functionality just to test
+- Responsive design elements
+
 - Dynamic styling with hover effects
 
 **Technologies Used:**
