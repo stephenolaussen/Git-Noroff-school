@@ -1,10 +1,6 @@
 $.ajax({
-    url: 'https://jsonplaceholder.typicode.com/posts',
-    method: 'GET',
-    success: function(data) {
-        console.log(data);
-    },
-    error: function(error) {
-        console.error('Error fetching data:', error);
+    url: 'https://api.github.com/repos/stephenolaussen/Git-Noroff-school',
+    success: function(response) {
+        console.log(response);
     }
 });
